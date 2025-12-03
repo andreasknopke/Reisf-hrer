@@ -16,7 +16,6 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useTranslation } from 'react-i18next';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Attraction, Coordinates, MapData } from '../types';
 import { RootStackParamList } from '../types/navigation';
