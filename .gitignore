@@ -29,3 +29,6 @@ logs/
 .env
 .env.local
 .env.*.local
+
+src/config/production.json
+src/config/development.json

@@ -7,6 +7,7 @@ const resources = {
       appName: 'Travel Guide',
       home: 'Home',
       map: 'Map',
+      favorites: 'Favorites',
       settings: 'Settings',
       nearbyAttractions: 'Nearby Attractions',
       searchPlaceholder: 'Search city or attraction...',
@@ -25,14 +26,15 @@ const resources = {
       aboutThisPlace: 'About this place',
       openingHours: 'Opening Hours',
       contact: 'Contact',
-      website: 'Website'
-    }
+      website: 'Website',
+    },
   },
   de: {
     translation: {
       appName: 'Reiseführer',
       home: 'Start',
       map: 'Karte',
+      favorites: 'Favoriten',
       settings: 'Einstellungen',
       nearbyAttractions: 'Sehenswürdigkeiten in der Nähe',
       searchPlaceholder: 'Stadt oder Sehenswürdigkeit suchen...',
@@ -51,20 +53,19 @@ const resources = {
       aboutThisPlace: 'Über diesen Ort',
       openingHours: 'Öffnungszeiten',
       contact: 'Kontakt',
-      website: 'Webseite'
-    }
-  }
-};
+      website: 'Webseite',
+    },
+  },
+} as const;
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'de',
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false
-    }
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'de',
+  fallbackLng: 'en',
+  compatibilityJSON: 'v3',
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;

@@ -5,17 +5,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
 import { useTranslation } from 'react-i18next';
-import './i18n';
+import './config/i18n';
 
-import HomeScreen from './HomeScreen';
-import MapScreen from './MapScreen';
-import DetailsScreen from './DetailsScreen';
-import SettingsScreen from './SettingsScreen';
+import HomeScreen from './screens/HomeScreen';
+import MapScreen from './screens/MapScreen';
+import DetailsScreen from './screens/DetailsScreen';
+import WebViewScreen from './screens/WebViewScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import FavoritesScreen from './screens/FavoritesScreen';
 
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+import { RootStackParamList, TabParamList } from './types/navigation';
 
-function HomeTabs() {
+const Stack = createStackNavigator<RootStackParamList>();
+const Tab = createBottomTabNavigator<TabParamList>();
+
+const HomeTabs: React.FC = () => {
   const { t } = useTranslation();
   
   return (
@@ -31,7 +35,7 @@ function HomeTabs() {
         component={HomeScreen}
         options={{
           tabBarLabel: t('home'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 24 }}>🏠</Text>,
+          tabBarIcon: () => <Text style={{ fontSize: 24 }}>🏠</Text>,
         }}
       />
       <Tab.Screen
@@ -39,7 +43,15 @@ function HomeTabs() {
         component={MapScreen}
         options={{
           tabBarLabel: t('map'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 24 }}>🗺️</Text>,
+          tabBarIcon: () => <Text style={{ fontSize: 24 }}>🗺️</Text>,
+        }}
+      />
+      <Tab.Screen
+        name="FavoritesTab"
+        component={FavoritesScreen}
+        options={{
+          tabBarLabel: t('favorites'),
+          tabBarIcon: () => <Text style={{ fontSize: 24 }}>❤️</Text>,
         }}
       />
       <Tab.Screen
@@ -47,14 +59,14 @@ function HomeTabs() {
         component={SettingsScreen}
         options={{
           tabBarLabel: t('settings'),
-          tabBarIcon: ({ color }) => <Text style={{ fontSize: 24 }}>⚙️</Text>,
+          tabBarIcon: () => <Text style={{ fontSize: 24 }}>⚙️</Text>,
         }}
       />
     </Tab.Navigator>
   );
-}
+};
 
-export default function App() {
+const App: React.FC = () => {
   const { t } = useTranslation();
 
   return (
@@ -76,9 +88,19 @@ export default function App() {
               headerBackTitle: t('home'),
             }}
           />
+          <Stack.Screen
+            name="WebView"
+            component={WebViewScreen}
+            options={{
+              headerTitle: 'Wikitravel/Wikipedia',
+              headerBackTitle: t('home'),
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
       <StatusBar style="auto" />
     </>
   );
-}
+};
+
+export default App;
