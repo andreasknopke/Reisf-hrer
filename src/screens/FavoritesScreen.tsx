@@ -12,7 +12,7 @@ type FavoritesScreenNavigationProp = StackNavigationProp<RootStackParamList>;
 const FavoritesScreen: React.FC = () => {
   const navigation = useNavigation<FavoritesScreenNavigationProp>();
   const { t } = useTranslation();
-  const { favorites, toggleFavorite, loading } = useFavorites();
+  const { favorites, toggleFavorite } = useFavorites();
 
   const renderFavorite = ({ item }: { item: Attraction }) => (
     <TouchableOpacity
